@@ -1,0 +1,12 @@
+service:
+  internalPort: 8000
+  externalPort: 80
+image:
+  repository: oturans/search-ui
+  tag: latest
+
+ingress:
+  class: nginx
+  host: 
+
+mongoHost: 

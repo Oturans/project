@@ -1,0 +1,6 @@
+image:
+  repository: mongo
+  tag: latest
+service:
+  externalPort: 27017
+  internalPort: 27017

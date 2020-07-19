@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
+  labels:
+    app: search
+    component: mongoexporter
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search
+      component: mongoexporter
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: mongoexporter
+      labels:
+        app: search
+        component: mongoexporter
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        name: mongoexporter
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+          name: mongoexporter
+          protocol: TCP
+        env:
+        - name: MONGODB_URI
+          value: {{ .Values.mongoHost | default (printf "mongodb://%s-mongo:27017" .Release.Name) }}
+

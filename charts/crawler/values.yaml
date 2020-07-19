@@ -1,0 +1,11 @@
+image:
+  repository: oturans/search-crawler
+  tag: latest
+
+service:
+  internalPort: 8000
+  externalPort: 8000
+
+mongoHost: 
+rmqhostHost: 
+

@@ -1,0 +1,6 @@
+image:
+  repository: bitnami/mongodb-exporter
+  tag: 0.11.0
+service:
+  externalPort: 9216
+  internalPort: 9216

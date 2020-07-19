@@ -1,0 +1,18 @@
+dependencies:
+- name: crawler
+  repository: file://../crawler
+  version: 1.0.0
+- name: ui
+  repository: file://../ui
+  version: 1.0.0
+- name: mongo
+  repository: file://../mongo
+  version: 1.0.0
+- name: rabbit
+  repository: file://../rabbit
+  version: 1.0.0
+- name: mongoexporter
+  repository: file://../mongoexporter
+  version: 1.0.0
+digest: sha256:2ad8febafcc5ed2b1fd33d250fa8dd48e9be01f699f1c0ce6472e16e74fa76fc
+generated: "2020-07-18T14:49:02.447397913+03:00"

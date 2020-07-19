@@ -1,0 +1,16 @@
+crawler:
+  image:
+    repository: oturans/search-crawler
+    tag: latest
+
+ui:
+  image:
+    repository: oturans/search-ui
+    tag: latest
+  service:
+    externalPort: 80
+
+
+
+
+

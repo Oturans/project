@@ -1,0 +1,6 @@
+image:
+  repository: rabbitmq
+  tag: 3-management
+service:
+  internalPort: 5672
+  externalPort: 5672
