@@ -1,4 +1,3 @@
-
 #!/bin/bash
 set -e
 
@@ -11,6 +10,6 @@ terraform --version
 curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
 # install helm
-- curl https://kubernetes-helm.storage.googleapis.com/helm-v2.13.1-linux-amd64.tar.gz | tar zx
-- sudo mv linux-amd64/helm /usr/bin/
-- helm version --client
+curl https://kubernetes-helm.storage.googleapis.com/helm-v2.13.1-linux-amd64.tar.gz | tar zx
+sudo mv linux-amd64/helm /usr/bin/
+helm version --client
