@@ -5,12 +5,7 @@ language: bash
 
 before_install:
 
-- curl https://raw.githubusercontent.com/Oturans/trytravis-work/ansible-3/config-scripts/install_all_travis.sh | bash
-- curl https://kubernetes-helm.storage.googleapis.com/helm-v2.13.1-linux-amd64.tar.gz | tar zx
-
-- sudo mv linux-amd64/helm /usr/bin/
-- helm version --client
-
+- curl https://raw.githubusercontent.com/Oturans/project/master/install_for_travis.sh | bash
 
 #terraform validate
 - cd ./infra/terraform; terraform init -backend=false;
