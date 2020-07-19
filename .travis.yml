@@ -1,20 +1,13 @@
 dist: xenial
 sudo: required
 language: bash
-
-
 before_install:
-
-- curl https://raw.githubusercontent.com/Oturans/project/master/install_for_travis.sh | bash
-
-#terraform validate
+- curl https://raw.githubusercontent.com/Oturans/project/master/install_for_travis.sh
+  | bash
 - cd ./infra/terraform; terraform init -backend=false;
 - terraform validate;
 - tflint;
 - cd ../..;
-
-#Helm Lint
-
 - cd ./infra/gitlab-omnibus && helm lint;
 - cd ../..;
 - cd ./infra/grafana && helm lint;
@@ -33,14 +26,10 @@ before_install:
 - cd ../..;
 - cd ./charts/ui && helm lint;
 - cd ../..;
-
-#docker: Check docker build
-- cd ./src/search-engine-crawler && docker build -t test/crawler:test . 
+- cd ./src/search-engine-crawler && docker build -t test/crawler:test .
 - cd ../..;
 - cd ./src/search-engine-ui && docker build -t test/ui:test .
-
-
 notifications:
   slack:
     rooms:
-      secure: H6qr6EgPfkrmLHBPp8pHy/QceXx5UwaDHhcdYiVfqnrvyeeoWI8qTyGEbecxnmO6tuQYF00iAEcelrSeCedOJsv7FU/LftSA6A8M0vNrrHsUPvwj66OhqcUAcsxQ3A7ZO2SkpiPRr4WPWl+QkXQ8o8+0DKd2tNndfNeytXJ+WGaSE4lTaeDr4y6tldRuvZFchahz67uAtMUhKb+99Wkj915iv6hL97ZVMH+vR/4Oulzbxf7M6PKQ+wpHkbgjiMFxXNl2kVoXE/xMLrEkcWCeUnKTU2Hyx5o2zDXSmkAlKivm65VGo7nnto2N8DKHMxFMKJNmT04YvbWxf2dwnr2weYDN8wK4TEiYIKJAlgCytj7QkogcNwDjo2h/AchJf9U8x39zyVfXpDghKT5EXypv7mxNgGcKmmBjLDesUm+ZXxvrX/jQ/ICkAiTXk1UW/8MuxXaHyA4g14ptN+/WJ+tf1rHz+kEIcqGISaLv0YNpQoODMovOtVLjPDV7yaQhCK9BkMmSKLbWBtlt31S2g8pFqeCvz5ADOLI3SzC1Jl8GdMldQg2/4uv4npg7eNIBxrU/t+xPR4+aAHxUmV0tRLpGLoRUaXwhfLPSSpCtGHE3NFCwpX+QB/Xu3e9EBPh2gC1MfmybZ4B8HrvMVjw465SbakrHn3lqpvnI8DD7WlC05tU=
+      secure: QBl6+7P743txsx3bFe/H6HN86RO9ES2Qe2VRpfWWUZlOGZguurr8IgonCE6Nmchy75LMsH3OOyI931uAHzsn9UV9CkYSnrWUa1pefJZ9irNHp3L3vT7w8A9JlYWxdaKZ/Doyak0MUAdm992BWl8gNtP6brWYx5jdwyiSWxzqW7za+HBDE/1Mnava1ZiVWa6BwpszaJVBQtfdryIo/qL/leO1L9RYHtt4DwHyqtJiQJLEW/F5iL/wnwSNoJ1wv9nl2hgXLf9+9aqFUJKOqNop/U4I3Rr9HkAiZDffMGrEo/SfA74eyvdDCqFFN8JPDQByxTlBJ20fRfC8/wmMaZnqQm0akC/WMMInvPNbTo60xLlBc8t64r0ATRn+O7j5+AJhKQkeTZ8AERkKOrVtZkwu01eU+9jhBoDOvUMc7Sy3appW5PLfM2HyHf0cfBSkRBaDLFTiwA7pkTV6n73G7T6K0RDGWClmlhr4EmtsCL+Dhqr9zTctg3CHrdsaL1AZhe3HpTNVH0Wroge1zAKctv6+uHCB63S0fj4mDfdkrV6obV0F7xieGnGtTVyqzJEYSuFCnjCQjbCq/Yjz3DuYLGUXrBJHFwUabM5hp7t5yqAEh6rnMOP1UKPrTGb+FEbhTFv2KMGYlD7bESTGhMpP3v+dJzJZTyrsJ9kLOpfeSf/Joc8=
