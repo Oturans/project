@@ -39,9 +39,9 @@ before_install:
 - cd ./charts/ui && helm lint;
 
 #docker: Check docker build
-- cd src/search-engine-crawler && docker build -t test/crawler:1.0 .;
+- cd ./src/search-engine-crawler && docker build -t test/crawler:1.0 .;
 - cd ../..;
-- cd src/search-engine-ui && docker build -t test/ui:1.0 .;
+- cd ./src/search-engine-ui && docker build -t test/ui:1.0 .;
 
 
 notifications:
