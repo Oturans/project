@@ -42,7 +42,7 @@ before_install:
 #docker: Check docker build
 - cd ./src/search-engine-crawler && docker build -t test/crawler:test . 
 - cd ../..;
-- cd /src/search-engine-ui && docker build -t test/ui:test .
+- cd ./src/search-engine-ui && docker build -t test/ui:test .
 
 
 notifications:
