@@ -23,7 +23,7 @@ gke-destroy:
 helm-install:
 	cd infra/helm && kubectl apply -f tiller.yml
 	cd infra/helm && helm init --service-account tiller
-	sleep 10
+	sleep 20
 
 #---------------------------------------------------Nginx
 nginx-install:
@@ -54,13 +54,11 @@ grafana-install:
 
 build-all: build-ui build-crawler
 
-
 build-ui:
 	cd ./src/search-engine-ui && docker build -t ${USER_NAME}/search-ui .
 
 build-crawler:
 	cd ./src/search-engine-crawler && docker build -t ${USER_NAME}/search-crawler .
-
 
 #---------------------------------------------------PUSH
 

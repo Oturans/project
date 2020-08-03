@@ -1,7 +1,7 @@
 
 
+## Project OTUS Final    
 
-## Project .....  
 
 #### Описание приложения и его архитектура  
 
@@ -41,11 +41,10 @@
    2.1. В обшем то сам Helm через Kubectl  
    2.2. Nginx в качестве ingress, используется по умолчанию, ничего не менял  
    2.3. Gitlab-omnibus взять готовый из домашки.  
-   2.4. Prometheus за основу взят из домашки, добавлено автодискавери  
+   2.4. Prometheus за основу взят последний чарт, добавлено автодискавери  
    UI/Crawler/MongoExporter  
-   2.5. Alermanager настроено уведомление в slack и на почту
-   
-   2.6. Grafana - Датастор(prometheus) + 2 дашборда(Кубер взят готовый и Собрал свой по UI/Crawler), оба дашборда загружаются с grafana.com в процессе install. 
+   2.5. Alermanager настроено уведомление в slack и на почту  
+   2.6. Grafana - Датастор(prometheus) + 2 дашборда(Кубер взят готовый и Собрал свой по UI/Crawler), оба дашборда загружаются с grafana.com в процессе установки Grafana  
 
 3. Разворачивание и настройка infra происходит на этапе Install, весь процес выполняется с помощью утилиты make.  
    Итоговый файл можно посмотреть тут [**Makefile**][6]
@@ -78,7 +77,7 @@
 	Там же настроены докер файлы для сборки приложений в докер контейнеры:  
 		[/src/search-engine-crawler/Dockerfile][3]  
 		[/src/search-engine-ui/Dockerfile][4]  
-5. Для лольного теста приложения собрал приложение в docker-compose  
+5. Для локального теста приложения собрал приложение в docker-compose  
 	Запустить из / **make compose-up**  
 	Удалить из / **make compose-down**  
 
@@ -109,16 +108,20 @@ GCP_PROJECT = project-otus-283004  	< --- ID проекта в GCP
 
 4. Ждем... (...можно сделать кофе, покурить...)  
 
-5. Смотрим  внешний IP выданный Nginx-Controller и добавяем в /etc/hosts строку вида
+5. Смотрим  внешний IP выданный Nginx-Controller  
 ```
-GCP-IP prometheus grafana gitlab-gitlab production staging  
+kubectl	get svc 
+```	
+    и добавяем в /etc/hosts строку вида  
 ```
-5. Первым делом открываем сайт https://gitlab-gitlab/
+GCP-IP prometheus alertmanager grafana gitlab-gitlab production staging  
+```
+6. Первым делом открываем сайт https://gitlab-gitlab/  
 
-устанавливаем пароль
-Заходим в Gitlab
+устанавливаем пароль  
+Заходим в Gitlab  
 
-Создаем группу = dockerlogin  
+Создаем группу = {dockerlogin}  
 создаем 3 проекта:  
 search-deploy (этот создаем обязательно первым)  
 search-engine-ui  
@@ -132,21 +135,26 @@ search-engine-crawler
 Необходимо добавить 3 переменных на группу:  
 **CI_REGISTRY_USER**    	< --- логин на DockerHub  
 **CI_REGISTRY_PASSWORD**	< --- пароль на DockerHub  
-**token** 					< --- токен, генерим в разделе CI/CD в репе  
+**token** 					< --- токен, генерим в разделе CI/CD в проекте search-deploy  
 
 В принципе все, можно пользоватся.  
 
-https://prometheus/
-
-https://grafana/
+https://prometheus/  
+https://alermanager/  
+https://grafana/  
 	логин: admin
 	пароль: admin321
 
+7. Для приложений которые будут подыматся в review надо будет дополнять hosts файл что бы был доступ аналогично staging и production  
 
-#### Что осталось?
-1. ScreenCast - записать по готоновсти.  
-2. Доработка описания.  
-3. что то чего я еще не учел.....   
+
+
+#### ScreenCast
+Выложен один и тот же файл на 2 площадки:
+
+1. Google https://youtu.be/p8oF_o07_84
+2. Mail https://cloud.mail.ru/public/3Ej2/EMCwApsMz
+
 
 #### RAW TEXT..... (To be continue... )
 

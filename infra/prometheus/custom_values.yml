@@ -97,7 +97,7 @@ alertmanager:
   ingress:
     ## If true, alertmanager Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     ## alertmanager Ingress annotations
     ##
@@ -112,7 +112,8 @@ alertmanager:
     ## alertmanager Ingress hostnames with optional path
     ## Must be provided if Ingress is enabled
     ##
-    hosts: []
+    hosts: ##[]
+      - alertmanager
     #   - alertmanager.domain.com
     #   - domain.com/alertmanager
 
@@ -305,7 +306,7 @@ alertmanager:
     servicePort: 80
     # nodePort: 30000
     sessionAffinity: None
-    type: ClusterIP
+    type: NodePort
 
 ## Monitors ConfigMap changes and POSTs to a URL
 ## Ref: https://github.com/jimmidyson/configmap-reload
@@ -1142,14 +1143,14 @@ pushgateway:
 alertmanagerFiles:
   alertmanager.yml: 
     global:
-        resolve_timeout: 1m
+        resolve_timeout: 10s
         slack_api_url: 'https://hooks.slack.com/services/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'
 
     route:
         receiver: 'slack-notifications'
         group_wait: 10s
-        group_interval: 5m
-        repeat_interval: 3h
+        group_interval: 20s
+        repeat_interval: 5m
       
     receivers:
         - name: 'slack-notifications'
@@ -1200,7 +1201,7 @@ serverFiles:
             labels:
               severity: page
             annotations:
-              description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute'
+              description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 10 second'
               summary: 'Instance {{ $labels.instance }} down'
   alerts: {}
   rules: {}

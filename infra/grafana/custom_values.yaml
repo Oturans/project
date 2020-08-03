@@ -410,7 +410,7 @@ dashboards:
       revision: 1
       datasource: Prometheus
     my-ui-crawler:
-      gnetId: 12684
+      gnetId: 12742 ## 12684 
       revision: 1
       datasource: Prometheus
 
